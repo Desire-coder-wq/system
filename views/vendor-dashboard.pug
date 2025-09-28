@@ -1,0 +1,92 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Vendor Dashboard
+  body
+    .wrap
+      header.header
+        h1 Vendor Dashboard
+        .user Signed in as Vendor
+
+      main.container
+        // Cards + Form side by side
+        .top-section
+          .cards
+            .card
+              .amount#totalSales UGX 0
+              .label Sales
+            .card
+              .amount#totalOrders UGX 0
+              .label Orders
+            .card
+              .amount#inStock UGX 0
+              .label In stock
+            .card
+              .amount#outOfStock 0
+              .label Out of stock
+
+          aside.panel
+            .panel-inner
+              h3 Add Product
+              .alert.success#successAlert(style="display:none;")
+                | Product has been added successfully!
+                button(type="button" id="closeSuccess") ×
+
+              form#productForm(enctype="multipart/form-data")
+                input(type="hidden" name="_id" id="_id")
+
+                label(for="name") Product Name
+                select#name(name="name" required)
+                  option(value="") -- Select Product --
+                  option Sumsang s25+ Ultra
+                  option Gucci XXL Shirt
+                  option XL Zara Shirt
+                  option iPhone 15
+                  option Smart home Curtain
+                  option Spectrum Laptop 14.6 Inc
+
+                label(for="category") Category
+                select#category(name="category" required)
+                  option(value="") -- Select Category --
+                  option Smart Phones
+                  option Fashion
+                  option Interior Design
+                  option Laptops
+
+                label(for="price") Price
+                input#price(name="price" type="number" step="0.01" placeholder="Price" required)
+
+                label(for="quantity") Quantity
+                input#quantity(name="quantity" type="number" placeholder="Quantity" required)
+
+                label(for="color") Color
+                input#color(name="color" type="text" placeholder="Color (optional)")
+
+                label(for="image") Product Image
+                input#image(name="image" type="file" accept="image/*")
+
+                label(for="description") Description
+                textarea#description(name="description" placeholder="Short description" required)
+
+                .actions
+                  button.btn.save(type="submit") SAVE
+                  button.btn.clear(type="button" id="clearBtn") CLEAR
+
+        // Table below both
+        .table-wrap
+          table#productsTable
+            thead
+              tr
+                th ID
+                th NAME
+                th CATEGORY
+                th PRICE(UGX)
+                th QUANTITY
+                th ACTIONS
+            tbody
+              // Products will load here
+
+    // Frontend JS
+    script(src="/public/js/main.js")
